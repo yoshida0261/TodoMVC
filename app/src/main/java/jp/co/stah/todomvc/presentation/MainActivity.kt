@@ -1,4 +1,4 @@
-package jp.co.stah.todomvc.presentation.presentor
+package jp.co.stah.todomvc.presentation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
