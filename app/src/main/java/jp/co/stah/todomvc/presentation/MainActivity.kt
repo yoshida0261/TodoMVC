@@ -1,13 +1,12 @@
 package jp.co.stah.todomvc.presentation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.ListView
 import jp.co.stah.todomvc.R
 import jp.co.stah.todomvc.presentation.todo.TodoListAdapter
 import jp.co.stah.todomvc.presentation.todo.TodoListItem
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     val items = ArrayList<TodoListItem>()
 
@@ -22,4 +21,6 @@ class MainActivity : AppCompatActivity() {
         list.adapter = adapter
 
     }
+
+
 }
