@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
+import jp.co.stah.todomvc.R
 
 class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>) :
     ArrayAdapter<TodoListItem>(context, resource, list) {
@@ -21,6 +23,10 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
         } else {
             view = convertView
         }
+
+        val item = mList[position]
+        view.findViewById<TextView>(R.id.textView).text = item.todoItem
+
         return view
     }
 }
