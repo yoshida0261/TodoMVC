@@ -1,11 +1,19 @@
-// Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-// Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
-// Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
-// Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
-// Vestibulum commodo. Ut rhoncus gravida arcu.
 
 package jp.co.stah.todomvc.presentation
 
+import android.content.Context
+import android.content.Intent
+import android.support.v4.app.FragmentActivity
+
 
 interface BaseView {
+    fun startActivity(intent: Intent)
+
+    fun startActivityForResult(intent: Intent, requestCode: Int)
+
+    fun finishActivity()
+
+    fun getContext(): Context
+
+    fun getActivity(): FragmentActivity?
 }
