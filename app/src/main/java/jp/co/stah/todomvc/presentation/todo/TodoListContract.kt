@@ -14,6 +14,9 @@ interface TodoListContract {
         fun edit(listNo: Int, item: String)
         fun check(listNo: Int, check: Boolean, item: String)
         fun dlete(listNo: Int, item: String)
+        fun showAll()
+        fun showActive()
+        fun showCompleted()
 
 
     }

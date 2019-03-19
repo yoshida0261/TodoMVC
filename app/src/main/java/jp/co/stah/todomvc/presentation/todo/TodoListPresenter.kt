@@ -28,11 +28,43 @@ class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContra
         mView.showChangeItem(list)
 
 
-
     }
 
     override fun dlete(listNo: Int, item: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showAll() {
+
+        mView.showChangeItem(list)
+
+    }
+
+
+    override fun showActive() {
+
+        val activeList = ArrayList<TodoListItem>()
+
+        list.forEach {
+            if (!it.done) {
+                activeList.add(it)
+            }
+        }
+        mView.showChangeItem(activeList)
+    }
+
+
+    override fun showCompleted() {
+
+        val activeList = ArrayList<TodoListItem>()
+
+        list.forEach {
+            if (it.done) {
+                activeList.add(it)
+            }
+        }
+        mView.showChangeItem(activeList)
+
     }
 
 }
