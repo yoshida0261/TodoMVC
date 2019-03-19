@@ -1,17 +1,15 @@
 package jp.co.stah.todomvc.presentation
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.widget.ListView
 import jp.co.stah.todomvc.R
-import jp.co.stah.todomvc.presentation.todo.TodoListAdapter
+import jp.co.stah.todomvc.presentation.todo.TodoListFragment
 import jp.co.stah.todomvc.presentation.todo.TodoListItem
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
     val items = ArrayList<TodoListItem>()
 
+    /*
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_all -> {
@@ -28,14 +26,16 @@ class MainActivity : BaseActivity() {
             }
         }
         false
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.container)
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+       // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        replaceFragment(TodoListFragment(), R.id.container)
+        /*
         val list = findViewById<ListView>(R.id.todo_list)
         val data = TodoListItem(false, "テスト")
         items.add(data)
@@ -62,6 +62,7 @@ class MainActivity : BaseActivity() {
 
         val adapter = TodoListAdapter(this, R.layout.todo_list_item, items)
         list.adapter = adapter
+        */
 
     }
 
