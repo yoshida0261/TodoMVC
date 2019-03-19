@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
+import jp.co.stah.todomvc.R
+import timber.log.Timber
 
 
 class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>) :
@@ -32,6 +35,13 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
         val paint = textView.paint
         textView.text = item.todo
         val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
+
+        val delete = view.findViewById<ImageView>(R.id.delete_button)
+        delete.setOnClickListener {
+            Timber.i("click delete_button")
+            val list = parent as ListView
+            list.performItemClick(view, position, R.id.delete_button.toLong())
+        }
 
         if (!item.done) {
             check.visibility = View.GONE

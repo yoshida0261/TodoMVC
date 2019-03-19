@@ -7,10 +7,6 @@ class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContra
     val list = ArrayList<TodoListItem>()
     var id = 0
 
-    override fun onViewCreated() {
-        super.onViewCreated()
-    }
-
     override fun add(item: String) {
         list.add(TodoListItem(id, false, item))
         mView.showChangeItem(list)
@@ -30,14 +26,13 @@ class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContra
 
     }
 
-    override fun dlete(listNo: Int, item: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun delete(listNo: Int) {
+        list.removeAt(listNo)
+        mView.showChangeItem(list)
     }
 
     override fun showAll() {
-
         mView.showChangeItem(list)
-
     }
 
 
@@ -55,9 +50,7 @@ class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContra
 
 
     override fun showCompleted() {
-
         val activeList = ArrayList<TodoListItem>()
-
         list.forEach {
             if (it.done) {
                 activeList.add(it)

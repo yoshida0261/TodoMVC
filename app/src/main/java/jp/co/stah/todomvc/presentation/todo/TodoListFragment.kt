@@ -1,6 +1,5 @@
 package jp.co.stah.todomvc.presentation.todo
 
-//import androidx.core.view.size
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -45,14 +44,19 @@ class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(
             }
         }
         val listView = activity!!.findViewById<ListView>(jp.co.stah.todomvc.R.id.todo_list)
-        listView.setOnItemClickListener { adapterView, view, i, l ->
+        listView.setOnItemClickListener { _, view, i, id ->
 
-            Timber.i("id ? $i ")
-            val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
-            val done = check.visibility == View.VISIBLE
-            val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
+            if (id == R.id.delete_button.toLong()) {
+                mPresenter.delete(i)
+            } else {
 
-            mPresenter.check(i, !done, textView.text.toString())
+                Timber.i("id ? $i ")
+                val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
+                val done = check.visibility == View.VISIBLE
+                val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
+
+                mPresenter.check(i, !done, textView.text.toString())
+            }
         }
 
     }
