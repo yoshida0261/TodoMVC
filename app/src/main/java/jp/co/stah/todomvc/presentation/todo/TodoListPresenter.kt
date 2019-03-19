@@ -1,21 +1,20 @@
 package jp.co.stah.todomvc.presentation.todo
 
-import jp.co.stah.todomvc.domain.usecase.TodoImpl
 import jp.co.stah.todomvc.presentation.BasePresenter
 
 class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContract.Interaction {
 
-    val todoimpl = TodoImpl()
     val list = ArrayList<TodoListItem>()
+    var id = 0
 
     override fun onViewCreated() {
         super.onViewCreated()
     }
 
     override fun add(item: String) {
-        todoimpl.add(item)
-        list.add(TodoListItem(false, item))
+        list.add(TodoListItem(id, false, item))
         mView.showChangeItem(list)
+        id++
     }
 
     override fun edit(listNo: Int, item: String) {

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import jp.co.stah.todomvc.R
+
 
 class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>) :
     ArrayAdapter<TodoListItem>(context, resource, list) {
@@ -26,18 +26,30 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
         }
 
         val item = mList[position]
-        view.findViewById<TextView>(R.id.textView).text = item.todoItem
+        val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
+        textView.text = item.todo
+        val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
 
-        view.findViewById<ImageView>(R.id.image_circle).setOnClickListener {
+        view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_circle).setOnClickListener {
 
-            val check = view.findViewById<ImageView>(R.id.image_check)
             if (check.visibility == View.VISIBLE) {
                 check.visibility = View.GONE
             } else {
                 check.visibility = View.VISIBLE
+
             }
 
         }
+
+        /*
+        if (check.visibility == View.GONE) {
+
+            textView.setTextColor(Color.LTGRAY)
+            val paint = textView.paint
+            paint.flags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            paint.isAntiAlias = true
+
+        }*/
 
 
         return view
