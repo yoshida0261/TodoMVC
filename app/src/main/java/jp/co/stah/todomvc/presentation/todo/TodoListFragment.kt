@@ -8,8 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import jp.co.stah.todomvc.presentation.BaseFragment
-
-
+import timber.log.Timber
 
 
 class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(), TodoListContract.View {
@@ -25,6 +24,7 @@ class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(
         val listView = activity!!.findViewById<ListView>(jp.co.stah.todomvc.R.id.todo_list)
         listView.setOnItemClickListener { adapterView, view, i, l ->
 
+            Timber.i("id ? $i $l")
             //if(view.id == R.id.textView){
             val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
             val paint = textView.paint
