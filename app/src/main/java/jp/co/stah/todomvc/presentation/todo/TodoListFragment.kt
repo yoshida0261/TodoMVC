@@ -38,8 +38,10 @@ class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         activity!!.findViewById<Button>(jp.co.stah.todomvc.R.id.addButton).setOnClickListener {
-            if (activity!!.findViewById<EditText>(jp.co.stah.todomvc.R.id.editText).text.isNotEmpty()) {
+            val textView = activity!!.findViewById<EditText>(jp.co.stah.todomvc.R.id.editText)
+            if (textView.text.isNotEmpty()) {
                 mPresenter.add(activity!!.findViewById<EditText>(jp.co.stah.todomvc.R.id.editText).text.toString())
+                textView.text.clear()
             }
         }
         val listView = activity!!.findViewById<ListView>(jp.co.stah.todomvc.R.id.todo_list)
