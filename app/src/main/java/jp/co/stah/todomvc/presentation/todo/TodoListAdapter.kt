@@ -1,6 +1,8 @@
 package jp.co.stah.todomvc.presentation.todo
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,30 +29,20 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
 
         val item = mList[position]
         val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
+        val paint = textView.paint
         textView.text = item.todo
         val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
 
-        view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_circle).setOnClickListener {
-
-            if (check.visibility == View.VISIBLE) {
-                check.visibility = View.GONE
-            } else {
-                check.visibility = View.VISIBLE
-
-            }
-
-        }
-
-        /*
-        if (check.visibility == View.GONE) {
-
+        if (!item.done) {
+            check.visibility = View.GONE
+            textView.setTextColor(Color.BLACK)
+            paint.flags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        } else {
+            check.visibility = View.VISIBLE
             textView.setTextColor(Color.LTGRAY)
-            val paint = textView.paint
             paint.flags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             paint.isAntiAlias = true
-
-        }*/
-
+        }
 
         return view
     }

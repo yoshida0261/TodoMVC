@@ -22,7 +22,13 @@ class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContra
     }
 
     override fun check(listNo: Int, check: Boolean, item: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        val item = list[listNo]
+        item.done = check
+        mView.showChangeItem(list)
+
+
+
     }
 
     override fun dlete(listNo: Int, item: String) {

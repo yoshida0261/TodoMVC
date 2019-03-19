@@ -2,8 +2,6 @@ package jp.co.stah.todomvc.presentation.todo
 
 //import androidx.core.view.size
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -24,8 +22,14 @@ class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(
         val listView = activity!!.findViewById<ListView>(jp.co.stah.todomvc.R.id.todo_list)
         listView.setOnItemClickListener { adapterView, view, i, l ->
 
-            Timber.i("id ? $i $l")
+            Timber.i("id ? $i ")
+            val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
+            val done = check.visibility == View.VISIBLE
+            val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
+
+            mPresenter.check(i, !done, textView.text.toString())
             //if(view.id == R.id.textView){
+            /*
             val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
             val paint = textView.paint
 
@@ -40,11 +44,7 @@ class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(
                 paint.flags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 paint.isAntiAlias = true
             }
-
-
-
-            //}
-
+            */
         }
 
     }
