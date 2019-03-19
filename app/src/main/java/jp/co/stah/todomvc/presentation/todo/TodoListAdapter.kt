@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import jp.co.stah.todomvc.R
 
@@ -26,6 +27,18 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
 
         val item = mList[position]
         view.findViewById<TextView>(R.id.textView).text = item.todoItem
+
+        view.findViewById<ImageView>(R.id.image_circle).setOnClickListener {
+
+            val check = view.findViewById<ImageView>(R.id.image_check)
+            if (check.visibility == View.VISIBLE) {
+                check.visibility = View.GONE
+            } else {
+                check.visibility = View.VISIBLE
+            }
+
+        }
+
 
         return view
     }
