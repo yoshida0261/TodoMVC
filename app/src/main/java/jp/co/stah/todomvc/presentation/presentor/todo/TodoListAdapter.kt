@@ -6,10 +6,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import jp.co.stah.todomvc.R
 import timber.log.Timber
 
@@ -31,9 +28,34 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
         }
 
         val item = mList[position]
-        val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
-        val paint = textView.paint
-        textView.text = item.todo
+        val editText = view.findViewById<EditText>(R.id.todoText)
+        val paint = editText.paint
+
+
+        Timber.i("editText ${editText.text} item ${item.todo}")
+        if (editText.text.isEmpty()) {
+            editText.setText(item.todo, TextView.BufferType.NORMAL)
+        }
+
+        editText.setOnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                val edit = v as EditText
+                item.todo = edit.text.toString()
+
+            }
+        }
+
+        editText.setOnClickListener {
+            val list = parent as ListView
+            list.performItemClick(view, position, R.id.todoText.toLong())
+        }
+
+        view.findViewById<FrameLayout>(R.id.checkFrameLayout).setOnClickListener {
+            val list = parent as ListView
+            list.performItemClick(view, position, R.id.checkFrameLayout.toLong())
+        }
+
+
         val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
 
         val delete = view.findViewById<ImageView>(R.id.delete_button)
@@ -45,12 +67,12 @@ class TodoListAdapter(context: Context, resource: Int, list: List<TodoListItem>)
 
         if (!item.done) {
             check.visibility = View.GONE
-            textView.setTextColor(Color.BLACK)
-            paint.flags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            editText.setTextColor(Color.BLACK)
+            paint.flags = editText.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         } else {
             check.visibility = View.VISIBLE
-            textView.setTextColor(Color.LTGRAY)
-            paint.flags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            editText.setTextColor(Color.LTGRAY)
+            paint.flags = editText.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             paint.isAntiAlias = true
         }
 

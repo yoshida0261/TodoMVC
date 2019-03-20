@@ -1,29 +1,32 @@
 package jp.co.stah.todomvc.presentation.presentor.todo
 
 import jp.co.stah.todomvc.presentation.BasePresenter
+import timber.log.Timber
 
 class TodoListPresenter : BasePresenter<TodoListContract.View>(), TodoListContract.Interaction {
 
     val list = ArrayList<TodoListItem>()
     var id = 0
 
-    override fun add(item: String) {
-        list.add(TodoListItem(id, false, item))
+    override fun add(todo: String) {
+        list.add(TodoListItem(id, false, todo))
         mView.showChangeItem(list)
         id++
     }
 
-    override fun edit(listNo: Int, item: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun edit(listNo: Int, todo: String) {
+
+        if (todo.isEmpty()) {
+            delete(listNo)
+            return
+        }
     }
 
-    override fun check(listNo: Int, check: Boolean, item: String) {
+    override fun check(listNo: Int, check: Boolean, todo: String) {
 
         val item = list[listNo]
         item.done = check
         mView.showChangeItem(list)
-
-
     }
 
     override fun delete(listNo: Int) {

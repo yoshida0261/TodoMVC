@@ -46,16 +46,22 @@ class TodoListFragment : BaseFragment<TodoListContract.View, TodoListPresenter>(
         val listView = activity!!.findViewById<ListView>(jp.co.stah.todomvc.R.id.todo_list)
         listView.setOnItemClickListener { _, view, i, id ->
 
+            val editText = view.findViewById<EditText>(jp.co.stah.todomvc.R.id.todoText)
             if (id == R.id.delete_button.toLong()) {
                 mPresenter.delete(i)
-            } else {
+            }
+            if (id == R.id.checkFrameLayout.toLong()) {
 
                 Timber.i("id ? $i ")
                 val check = view.findViewById<ImageView>(jp.co.stah.todomvc.R.id.image_check)
                 val done = check.visibility == View.VISIBLE
-                val textView = view.findViewById<TextView>(jp.co.stah.todomvc.R.id.textView)
 
-                mPresenter.check(i, !done, textView.text.toString())
+
+                mPresenter.check(i, !done, editText.text.toString())
+            }
+
+            if(id == R.id.todoText.toLong()){
+                mPresenter.edit(i, editText.text.toString())
             }
         }
 
