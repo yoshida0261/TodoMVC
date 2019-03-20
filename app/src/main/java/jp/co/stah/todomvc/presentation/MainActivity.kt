@@ -2,7 +2,7 @@ package jp.co.stah.todomvc.presentation
 
 import android.os.Bundle
 import jp.co.stah.todomvc.R
-import jp.co.stah.todomvc.presentation.todo.TodoListFragment
+import jp.co.stah.todomvc.presentation.presentor.todo.TodoListFragment
 
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

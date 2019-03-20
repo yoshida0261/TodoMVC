@@ -1,4 +1,4 @@
-package jp.co.stah.todomvc.presentation.todo
+package jp.co.stah.todomvc.presentation.presentor.todo
 
 import android.content.Context
 import android.graphics.Color
